@@ -1,0 +1,46 @@
+loading the model (the first start takes a minute or two) ...
+[strata] starting the engine: reading the model's weights ...
+[strata] mapping the experts from the model files (about 108 GB, --mmap-experts): they are not loaded into RAM - the OS file cache reads them as the GPU's expert cache fills and as requests need them.
+         YOUR PC CAN BE SLOW OR STOP RESPONDING FOR 1-3 MINUTES NOW - this is normal.
+         Please wait and don't close this window; the browser opens when it is ready.
+[strata] filling the GPU's expert cache (24576 experts, 45.12 GiB of VRAM) ...
+[strata] still starting (27 s) - please wait ...
+[strata] almost ready ...
+ready: http://127.0.0.1:8080/v1  (OpenAI: /v1/chat/completions, Anthropic: /v1/messages, context 262144 tokens)
+       open http://127.0.0.1:8080/ in a browser to chat; close this window to stop the model
+[strata] thinking: 17 of max 96 tokens, 78.8 tok/s, 1 s
+[strata] done: 52 tokens in 2 s (75.1 tok/s) (stop, cancel=False)
+[strata] done: 8 tokens in 1 s (94.1 tok/s) (length, cancel=False)
+[strata] the reply reached max tokens while still thinking, so it has no answer: a thinking budget (reasoning_budget_tokens, in the request or in strata-<model>.json for every request) leaves room to answer
+[strata] reading the prompt: 4,089 of 4,096 tokens, 3 s so far
+[strata] answering: 15 of max 128 tokens, 59.4 tok/s, 4 s
+[strata] answering: 74 of max 128 tokens, 58.7 tok/s, 5 s
+[strata] done: 128 tokens in 6 s (59.6 tok/s) (length, cancel=False)
+[strata] reading the prompt: 8,192 of 32,768 tokens, 4 s so far
+[strata] reading the prompt: 16,384 of 32,768 tokens, 8 s so far
+[strata] reading the prompt: 24,576 of 32,768 tokens, 12 s so far
+[strata] reading the prompt: 32,761 of 32,768 tokens, 16 s so far
+[strata] reading the prompt: 32,767 of 32,768 tokens, 17 s so far
+[strata] answering: 57 of max 128 tokens, 58.1 tok/s, 18 s
+[strata] answering: 122 of max 128 tokens, 60.7 tok/s, 19 s
+[strata] done: 128 tokens in 19 s (61.6 tok/s) (length, cancel=False)
+[strata] reading the prompt: 8,192 of 128,000 tokens, 4 s so far
+[strata] reading the prompt: 16,384 of 128,000 tokens, 8 s so far
+[strata] reading the prompt: 24,576 of 128,000 tokens, 12 s so far
+[strata] reading the prompt: 32,768 of 128,000 tokens, 16 s so far
+[strata] reading the prompt: 40,960 of 128,000 tokens, 20 s so far
+[strata] reading the prompt: 49,152 of 128,000 tokens, 24 s so far
+[strata] reading the prompt: 57,344 of 128,000 tokens, 28 s so far
+[strata] reading the prompt: 65,536 of 128,000 tokens, 33 s so far
+[strata] reading the prompt: 73,728 of 128,000 tokens, 37 s so far
+[strata] reading the prompt: 81,920 of 128,000 tokens, 41 s so far
+[strata] reading the prompt: 90,112 of 128,000 tokens, 46 s so far
+[strata] reading the prompt: 98,304 of 128,000 tokens, 50 s so far
+[strata] reading the prompt: 106,496 of 128,000 tokens, 54 s so far
+[strata] reading the prompt: 114,688 of 128,000 tokens, 59 s so far
+[strata] reading the prompt: 122,880 of 128,000 tokens, 63 s so far
+[strata] reading the prompt: 127,993 of 128,000 tokens, 67 s so far
+[strata] reading the prompt: 127,999 of 128,000 tokens, 68 s so far
+[strata] answering: 56 of max 128 tokens, 57.0 tok/s, 69 s
+[strata] answering: 120 of max 128 tokens, 59.8 tok/s, 70 s
+[strata] done: 128 tokens in 70 s (61.1 tok/s) (length, cancel=False)
