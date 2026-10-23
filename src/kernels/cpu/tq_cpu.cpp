@@ -253,8 +253,10 @@ void tq_rows(TqIsa isa, int ggml_type, const uint8_t* w, size_t row_bytes, int n
     if (!tq_isa_ok(isa)) std::abort();   // a caller bug: asked for an ISA this CPU does not have
     const int16_t* tab = tq_state_table_for(ggml_type);
     const ActSet& s = unpack_all(act, n, nt);
-    if (ggml_type >= 147 && ggml_type <= 149) {   // Gyro-L pair trellis: the scalar pair kernel (exact)
-        tq_detail::tq_rows_scalar_tqp(tq_kbits(ggml_type), w, row_bytes, n, s.ptr, nt, out, r0, r1);
+    if (ggml_type >= 147 && ggml_type <= 149) {   // Gyro-L pair trellis: the AVX2 pair kernel (scalar is the reference)
+        const int kb = tq_kbits(ggml_type);
+        if (isa == TqIsa::scalar) tq_detail::tq_rows_scalar_tqp(kb, w, row_bytes, n, s.ptr, nt, out, r0, r1);
+        else tq_detail::tq_rows_avx2_tqp(kb, w, row_bytes, n, s.ptr, nt, out, r0, r1);
         return;
     }
     rows_on(isa, tq_kbits(ggml_type), tab, w, row_bytes, n, s.ptr, nt, out, r0, r1);
@@ -277,8 +279,10 @@ void tq_gu_rows(TqIsa isa, int ggml_type, const uint8_t* blob, size_t gu_row, si
     const int kb = tq_kbits(ggml_type);
     const bool pair = ggml_type >= 147 && ggml_type <= 149;   // Gyro-L pair trellis: the scalar pair kernel
     auto rows = [&](const uint8_t* w, float* const* o) {
-        if (pair) tq_detail::tq_rows_scalar_tqp(kb, w, gu_row, n, s.ptr, nt, o, r0, r1);
-        else rows_on(isa, kb, tab, w, gu_row, n, s.ptr, nt, o, r0, r1);
+        if (pair) {
+            if (isa == TqIsa::scalar) tq_detail::tq_rows_scalar_tqp(kb, w, gu_row, n, s.ptr, nt, o, r0, r1);
+            else tq_detail::tq_rows_avx2_tqp(kb, w, gu_row, n, s.ptr, nt, o, r0, r1);
+        } else rows_on(isa, kb, tab, w, gu_row, n, s.ptr, nt, o, r0, r1);
     };
     rows(blob, gp);
     rows(blob + up_off, up);
